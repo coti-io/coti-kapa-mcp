@@ -19,7 +19,7 @@ Repo: https://github.com/coti-io/coti-kapa-mcp
 
 ### 1. Add GitHub secrets
 
-In **coti-io/coti-kapa-mcp → Settings → Secrets and variables → Actions**, add:
+Add secrets to the **`main` environment** (Settings → Environments → **main** → Environment secrets):
 
 | Secret | Where to get it |
 |--------|-----------------|
@@ -27,12 +27,14 @@ In **coti-io/coti-kapa-mcp → Settings → Secrets and variables → Actions**,
 | `KAPA_PROJECT_ID` | Kapa project settings or URL (UUID) |
 | `SLACK_WEBHOOK_URL` | Slack app → Incoming Webhooks → channel webhook URL |
 
+The workflow job sets `environment: main` so these environment secrets are injected. Repository-level secrets also work if you prefer those instead.
+
 Do **not** commit API keys or paste them in chat.
 
 ```bash
-gh secret set KAPA_API_KEY --repo coti-io/coti-kapa-mcp
-gh secret set KAPA_PROJECT_ID --repo coti-io/coti-kapa-mcp
-gh secret set SLACK_WEBHOOK_URL --repo coti-io/coti-kapa-mcp
+gh secret set KAPA_API_KEY --env main --repo coti-io/coti-kapa-mcp
+gh secret set KAPA_PROJECT_ID --env main --repo coti-io/coti-kapa-mcp
+gh secret set SLACK_WEBHOOK_URL --env main --repo coti-io/coti-kapa-mcp
 ```
 
 ### 2. Test locally (optional)

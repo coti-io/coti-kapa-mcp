@@ -9,6 +9,7 @@ on:
 jobs:
   audit:
     runs-on: ubuntu-latest
+    environment: main
     steps:
       - uses: actions/checkout@v4
 
