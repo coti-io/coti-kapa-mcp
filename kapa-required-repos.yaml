@@ -1,0 +1,93 @@
+# Required Kapa GitHub Code sources for coti-io.
+# A repo is considered ingested when coti-knowledge returns chunks tagged:
+#   # Coti-io > <RepoName> > Blob > ...
+#
+# Update this file when a new Production repo should be searchable in Kapa.
+# Source policy: github-projects-monitor scan scope (Production, active, not legacy).
+
+org: coti-io
+
+kapa_docs: https://docs.kapa.ai/data-sources/github-code
+
+required:
+  # Core GC stack
+  - repo: documentation
+    priority: core
+  - repo: coti-contracts
+    priority: core
+  - repo: coti-contracts-examples
+    priority: core
+  - repo: coti-sdk-typescript
+    priority: core
+  - repo: coti-sdk-python
+    priority: core
+  - repo: coti-ethers
+    priority: core
+  - repo: coti-hardhat-template
+    priority: core
+  - repo: coti-web3.py
+    priority: core
+
+  # PoD cluster
+  - repo: coti-pod-sdk
+    priority: high
+  - repo: coti-sdk-private-messaging
+    priority: high
+  - repo: coti-sdk-pod
+    priority: high
+  - repo: pod-mpc-lib
+    priority: high
+  - repo: pod-ecosystem-integration
+    priority: high
+  - repo: coti-pod-inbox-contracts
+    priority: high
+  - repo: coti-agent-messaging
+    priority: high
+  - repo: coti-safesync-framework
+    priority: medium
+
+  # Agent / tooling
+  - repo: coti-mcp
+    priority: high
+  - repo: coti-snap
+    priority: high
+  - repo: coti-skills
+    priority: medium
+
+  # Reference / examples / node
+  - repo: coti-demos
+    priority: high
+  - repo: coti-python-examples
+    priority: medium
+  - repo: coti-typescript-examples
+    priority: medium
+  - repo: coti-full-node
+    priority: medium
+  - repo: gcEVM-node
+    priority: medium
+
+optional_legacy:
+  # Already in Kapa but superseded — safe to remove from Kapa UI over time
+  - repo: confidentiality-contracts
+    priority: low
+  - repo: coti-sdk-python-examples
+    priority: low
+  - repo: coti-sdk-typescript-examples
+    priority: low
+
+optional_tier3:
+  # Add to Kapa only if you want deep answers on these tools
+  - repo: coti-eth-account
+    priority: low
+  - repo: coti-infra-contracts
+    priority: low
+  - repo: coti-token-list
+    priority: low
+  - repo: coti-remix-plugin
+    priority: low
+  - repo: coti-grants
+    priority: low
+  - repo: coti-developer-sessions
+    priority: low
+  - repo: coti-crypto
+    priority: low

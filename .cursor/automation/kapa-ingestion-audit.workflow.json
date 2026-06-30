@@ -1,0 +1,37 @@
+{
+  "name": "Kapa repo ingestion audit",
+  "description": "Weekday check that required coti-io repos are ingested in Kapa via GitHub Code; Slack alert when repos are missing.",
+  "workflow": {
+    "triggers": [
+      {
+        "cron": {
+          "cron": "0 9 * * 1-5"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "mcp": {
+          "server": {
+            "name": "coti-knowledge"
+          }
+        }
+      },
+      {
+        "slack": {}
+      }
+    ],
+    "prompts": [
+      "Audit Kapa GitHub Code ingestion for required coti-io repos.\n\n1. Read `kapa-required-repos.yaml` in this repo. Audit every repo under `required:`.\n\n2. For each repo, use the coti-knowledge MCP with a targeted query to find chunks tagged `# Coti-io > <RepoName> > Blob > ...`. Blob means GitHub Code ingestion.\n\n3. Build INGESTED, MISSING, and UNCERTAIN lists.\n\n4. If MISSING and UNCERTAIN are both empty: respond with exactly `OK: all required repos are ingested in Kapa.` Do NOT post to Slack.\n\n5. If any MISSING or UNCERTAIN: post ONE Slack message titled `Kapa ingestion gap — N repo(s) need attention` with missing repos (and priority from YAML), fix steps (Kapa Sources → GitHub Code, one source per repo), and https://docs.kapa.ai/data-sources/github-code\n\nDo not add Kapa sources — no public API for that."
+    ],
+    "model": "",
+    "agentOptions": {
+      "skipInstall": false
+    },
+    "memoryEnabled": true,
+    "gitConfig": {
+      "repo": "coti-io/coti-kapa-mcp",
+      "branch": "main"
+    }
+  }
+}
